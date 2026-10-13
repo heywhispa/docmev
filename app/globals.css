@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+/* Tokens DocMev v1 (2026-10-13). Fonte da verdade:
+   ~/Clientes/02_REC_Eraldo-Moraes/01_ALICERCE/01_BRANDING-E-IDENTIDADE/docmev-tokens.css */
+:root {
+  --dm-navy: #0a2740;
+  --dm-navy-esc: #061a2c;
+  --dm-azul-claro: #d1e3f2;
+  --dm-azul-medio: #1a5a91;
+  --dm-azul-pressed: #13426b;
+  --dm-vermelho: #d92e2e;
+  --dm-vermelho-esc: #910202;
+  --dm-off-white: #fafafa;
+  --dm-cinza: #44474f;
+  --dm-cinza-suave: #6b6f78;
+  --dm-borda: rgba(10, 39, 64, 0.12);
+  --dm-borda-clara: rgba(255, 255, 255, 0.14);
+  --dm-disabled-bg: #e9e9e9;
+  --dm-disabled-fg: #9f9f9f;
+
+  --background: var(--dm-off-white);
+  --foreground: var(--dm-navy);
+}
+
+@theme inline {
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-navy: var(--dm-navy);
+  --color-navy-esc: var(--dm-navy-esc);
+  --color-azul-claro: var(--dm-azul-claro);
+  --color-azul-medio: var(--dm-azul-medio);
+  --color-azul-pressed: var(--dm-azul-pressed);
+  --color-vermelho: var(--dm-vermelho);
+  --color-vermelho-esc: var(--dm-vermelho-esc);
+  --color-off-white: var(--dm-off-white);
+  --color-cinza: var(--dm-cinza);
+  --color-cinza-suave: var(--dm-cinza-suave);
+  --color-borda: var(--dm-borda);
+  --color-borda-clara: var(--dm-borda-clara);
+
+  --radius-dm: 10px;
+  --radius-card: 24px;
+
+  --shadow-cta: 0 10px 28px rgba(10, 39, 64, 0.28);
+  --shadow-cta-vermelho: 0 10px 28px rgba(217, 46, 46, 0.32);
+  --shadow-card: 0 12px 40px rgba(10, 39, 64, 0.08);
+
+  --animate-pulso-cta: pulso-cta 2.4s ease-in-out infinite;
+
+  @keyframes pulso-cta {
+    0%, 100% { box-shadow: 0 10px 28px rgba(217, 46, 46, 0.32), 0 0 0 0 rgba(217, 46, 46, 0.45); }
+    55% { box-shadow: 0 10px 28px rgba(217, 46, 46, 0.32), 0 0 0 14px rgba(217, 46, 46, 0); }
+  }
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+}
+
+/* Fundo navy com grão sutil (textura "céu estrelado" do branding,
+   reproduzida em CSS: nada de imagem do PDF). */
+.dm-navy-textura {
+  background-color: var(--dm-navy);
+  background-image:
+    radial-gradient(ellipse 70% 55% at 50% 0%, rgba(26, 90, 145, 0.55), transparent 70%),
+    radial-gradient(ellipse 40% 35% at 85% 90%, rgba(26, 90, 145, 0.25), transparent 70%);
+}
+.dm-navy-textura::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.18;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Ícones da marca (SVGs com fill fixo): máscara + currentColor. */
+.dm-icone {
+  display: inline-block;
+  background-color: currentColor;
+  -webkit-mask: var(--icone) center / contain no-repeat;
+  mask: var(--icone) center / contain no-repeat;
+}
+
+/* Bloco vermelho "8 pilares": canto superior direito em seta. */
+.dm-card-seta {
+  clip-path: polygon(0 0, 78% 0, 100% 16%, 100% 100%, 0 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .animate-pulso-cta { animation: none; }
+  *, *::before, *::after { transition-duration: 0.01ms !important; }
+}
+
+details > summary { list-style: none; }
+details > summary::-webkit-details-marker { display: none; }
