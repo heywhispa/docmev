@@ -5,7 +5,7 @@ import { OFERTA, DR_ERALDO } from "@/lib/oferta";
 export function AvisosDev() {
   if (process.env.NODE_ENV === "production") return null;
   const pendencias = [
-    OFERTA.checkoutUrl.startsWith("#") && "Link do checkout (NEXT_PUBLIC_CHECKOUT_URL)",
+    OFERTA.checkoutUrlCupom === OFERTA.checkoutUrl && "Cupom de 10% do pop-up de saída (NEXT_PUBLIC_CHECKOUT_URL_CUPOM)",
     OFERTA.vslEmbedUrl === "" && "URL da VSL (NEXT_PUBLIC_VSL_EMBED_URL)",
     DR_ERALDO.crm.includes("X") && "CRM, anos de experiência e nº de pacientes do Dr. Eraldo",
     OFERTA.whatsapp.includes("99999") && "WhatsApp e e-mail de suporte",

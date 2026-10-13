@@ -7,10 +7,14 @@ export const OFERTA = {
   nome: "docMEV",
   nomeCompleto: "docMEV: Medicina do Estilo de Vida",
 
-  // TODO: link real do checkout (Greenn, Hotmart, Kiwify...).
-  checkoutUrl: process.env.NEXT_PUBLIC_CHECKOUT_URL ?? "#checkout",
-  // TODO: link do checkout com o cupom de 10% extra do pop-up de saída.
-  checkoutUrlCupom: process.env.NEXT_PUBLIC_CHECKOUT_URL_CUPOM ?? "#checkout-cupom",
+  // Checkout Hotmart (oferta d9jlpmi3). A variável de ambiente, se existir, sobrepõe.
+  checkoutUrl: process.env.NEXT_PUBLIC_CHECKOUT_URL ?? "https://pay.hotmart.com/Y108012325N?off=d9jlpmi3",
+  // TODO: cupom de 10% extra do pop-up de saída. Na Hotmart é o mesmo link com
+  // &coupon=CODIGO; enquanto não houver cupom, cai no checkout normal.
+  checkoutUrlCupom:
+    process.env.NEXT_PUBLIC_CHECKOUT_URL_CUPOM ??
+    process.env.NEXT_PUBLIC_CHECKOUT_URL ??
+    "https://pay.hotmart.com/Y108012325N?off=d9jlpmi3",
 
   // TODO: URL de embed da VSL (Vturb / YouTube / Vimeo). Vazio mostra o poster.
   vslEmbedUrl: process.env.NEXT_PUBLIC_VSL_EMBED_URL ?? "",
