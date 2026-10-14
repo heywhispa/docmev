@@ -10,13 +10,13 @@ import {
 
 /* Sorteio do teste A/B. Roda em "/" e "/vendas".
 
-   1. Se a URL já traz ?v= válido (link de anúncio), respeita e grava no cookie,
+   1. Se a URL já traz ?variante= válido (link de anúncio), respeita e grava no cookie,
       pra pessoa continuar na mesma variante se voltar sem o parâmetro.
-   2. Sem ?v=: usa o cookie; sem cookie, sorteia 50/50 e grava.
-   3. Redireciona pra /vendas?v=X mantendo os outros parâmetros (UTMs). A URL
-      fica com o v explícito pro script de UTMs levar a variante até o checkout.
+   2. Sem ?variante=: usa o cookie; sem cookie, sorteia 50/50 e grava.
+   3. Redireciona pra /vendas?variante=X mantendo os outros parâmetros (UTMs). A URL
+      fica com o variante explícito pro script de UTMs levar a variante até o checkout.
 
-   A página em si continua estática: quem serve /vendas?v=X é o rewrite do
+   A página em si continua estática: quem serve /vendas?variante=X é o rewrite do
    next.config.ts pra /vendas/X. */
 
 function sortear(): Variante {

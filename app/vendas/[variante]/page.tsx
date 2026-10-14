@@ -20,7 +20,7 @@ import { Sobre } from "../_components/sobre";
 import { VarianteProvider } from "../_components/variante-contexto";
 
 /* Uma página estática por variante do teste A/B. O usuário chega por
-   /vendas?v=b (reescrito em next.config.ts) ou direto por /vendas/b. */
+   /vendas?variante=b (reescrito em next.config.ts) ou direto por /vendas/b. */
 
 export const ensureStatic = "navigation";
 

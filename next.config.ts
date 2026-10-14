@@ -3,15 +3,15 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   cacheComponents: true,
   partialPrefetching: true,
-  // "/" é tratado no proxy.ts (sorteia a variante e redireciona pra /vendas?v=X).
-  // Teste A/B: /vendas?v=b vira /vendas/b por baixo dos panos (a URL do
-  // visitante não muda). Sem ?v= ou com valor desconhecido, serve a padrão.
+  // "/" é tratado no proxy.ts (sorteia a variante e redireciona pra /vendas?variante=X).
+  // Teste A/B: /vendas?variante=b vira /vendas/b por baixo dos panos (a URL do
+  // visitante não muda). Sem ?variante= ou com valor desconhecido, serve a padrão.
   // Mantém em sincronia com VARIANTES / VARIANTE_PADRAO em lib/variantes.ts.
   async rewrites() {
     return [
       {
         source: "/vendas",
-        has: [{ type: "query", key: "v", value: "(?<variante>a|b)" }],
+        has: [{ type: "query", key: "variante", value: "(?<variante>a|b)" }],
         destination: "/vendas/:variante",
       },
       { source: "/vendas", destination: "/vendas/a" },
