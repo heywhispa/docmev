@@ -3,9 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   cacheComponents: true,
   partialPrefetching: true,
-  async redirects() {
-    return [{ source: "/", destination: "/vendas", permanent: false }];
-  },
+  // "/" é tratado no proxy.ts (sorteia a variante e redireciona pra /vendas?v=X).
   // Teste A/B: /vendas?v=b vira /vendas/b por baixo dos panos (a URL do
   // visitante não muda). Sem ?v= ou com valor desconhecido, serve a padrão.
   // Mantém em sincronia com VARIANTES / VARIANTE_PADRAO em lib/variantes.ts.

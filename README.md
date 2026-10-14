@@ -12,8 +12,8 @@ pnpm dev                     # http://localhost:3000/vendas
 
 ## Rotas
 
-- `/vendas`: página de vendas (VSL). `/` redireciona pra ela.
-- `/vendas?v=a` e `/vendas?v=b`: variantes do teste A/B (ver abaixo). `/vendas/a` e `/vendas/b` servem pra pré-visualizar.
+- `/vendas`: página de vendas (VSL). `/` e `/vendas` sem parâmetro sorteiam a variante do teste A/B e redirecionam pra `/vendas?v=X`.
+- `/vendas?v=a` e `/vendas?v=b`: forçam a variante (ver abaixo). `/vendas/a` e `/vendas/b` servem pra pré-visualizar sem mexer no cookie.
 - `/termos-de-uso`, `/politica-de-privacidade`, `/politica-de-reembolso`: placeholders.
 
 ## Onde mexer
@@ -29,6 +29,8 @@ Em desenvolvimento, uma faixa amarela no topo lista o que ainda é placeholder. 
 
 ## Teste A/B
 
+O `proxy.ts` sorteia 50/50 quem chega sem `?v=`, grava o cookie `docmev_variante` (30 dias) e redireciona pra `/vendas?v=X`, mantendo UTMs. Quem chega com `?v=` válido fica nele e o cookie é atualizado.
+
 Cada variante é uma página estática em `app/vendas/[variante]`. O `?v=` da URL é reescrito pela rota certa no `next.config.ts`; a URL do visitante não muda e o script de UTMs leva o `v` pro checkout da Hotmart (e pro `sck`). No GTM, o evento `variante_pagina` traz `{ variante }` e o `<html>` recebe `data-variante`.
 
-Nos anúncios, use sempre a forma com parâmetro (`/vendas?v=b`), não `/vendas/b`, pra variante chegar ao checkout.
+Nos anúncios, pode mandar pra `/vendas` (sorteio) ou forçar com `/vendas?v=b`. Não use `/vendas/b`: ele pula o sorteio e o checkout não recebe a variante.
