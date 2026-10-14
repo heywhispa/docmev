@@ -1,5 +1,8 @@
+"use client";
 import { cn } from "@/lib/utils";
 import { OFERTA } from "@/lib/oferta";
+import { comSrcHotmart } from "@/lib/variantes";
+import { useVariante } from "./variante-contexto";
 
 type Props = {
   children: React.ReactNode;
@@ -12,7 +15,8 @@ type Props = {
 };
 
 /* Único botão de ação da página. Vermelho = "energia vital" da paleta e
-   contraste 5,9:1 com texto branco. Navy = gradiente do branding. */
+   contraste 5,9:1 com texto branco. Navy = gradiente do branding.
+   O link sempre sai com src=variante-X pra Hotmart atribuir a venda ao teste A/B. */
 export function CtaBotao({
   children,
   href = OFERTA.checkoutUrl,
@@ -22,10 +26,11 @@ export function CtaBotao({
   className,
   id,
 }: Props) {
+  const varianteTeste = useVariante();
   return (
     <a
       id={id}
-      href={href}
+      href={comSrcHotmart(href, varianteTeste)}
       className={cn(
         "inline-flex w-full items-center justify-center rounded-dm text-center font-bold text-white transition-transform duration-200 ease-out sm:w-auto",
         "active:translate-y-px active:scale-[0.985] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-vermelho",

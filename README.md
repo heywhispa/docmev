@@ -31,6 +31,6 @@ Em desenvolvimento, uma faixa amarela no topo lista o que ainda é placeholder. 
 
 O `proxy.ts` sorteia 50/50 quem chega sem `?v=`, grava o cookie `docmev_variante` (30 dias) e redireciona pra `/vendas?v=X`, mantendo UTMs. Quem chega com `?v=` válido fica nele e o cookie é atualizado.
 
-Cada variante é uma página estática em `app/vendas/[variante]`. O `?v=` da URL é reescrito pela rota certa no `next.config.ts`; a URL do visitante não muda e o script de UTMs leva o `v` pro checkout da Hotmart (e pro `sck`). No GTM, o evento `variante_pagina` traz `{ variante }` e o `<html>` recebe `data-variante`.
+Cada variante é uma página estática em `app/vendas/[variante]`. O `?v=` da URL é reescrito pela rota certa no `next.config.ts`; a URL do visitante não muda. Todo botão de checkout sai com `src=variante-a` ou `src=variante-b`, que a Hotmart mostra como origem no relatório de vendas (as UTMs continuam indo pro `sck` pelo script do layout). No GTM, o evento `variante_pagina` traz `{ variante }` e o `<html>` recebe `data-variante`.
 
-Nos anúncios, pode mandar pra `/vendas` (sorteio) ou forçar com `/vendas?v=b`. Não use `/vendas/b`: ele pula o sorteio e o checkout não recebe a variante.
+Nos anúncios, pode mandar pra `/vendas` (sorteio) ou forçar com `/vendas?v=b`. `/vendas/b` direto pula o sorteio, mas o checkout ainda recebe o `src`.

@@ -13,9 +13,10 @@
    RASTREIO
    - GTM: evento "variante_pagina" no dataLayer com { variante: "a" | "b" }.
    - <html data-variante="b">: dá pra usar em gatilhos/variáveis DOM do GTM.
-   - Checkout: o script de UTMs do layout copia o ?v= da URL pro link da Hotmart
-     e também pro parâmetro sck, então o relatório de vendas separa por variante.
-     Por isso o anúncio deve usar a forma com ?v= (não /vendas/b).
+   - Checkout: todo CtaBotao recebe src=variante-a|b no link da Hotmart (campo
+     "src" do relatório de vendas). Isso é montado no servidor via contexto
+     (variante-contexto.tsx), então funciona mesmo sem JS e em /vendas/b direto.
+     O script de UTMs do layout não sobrescreve src que já existe no link.
 
    Pra criar uma nova variante: adicione a letra em VARIANTES e o bloco em CONTEUDO.
    Pra variar outra seção: acrescente o campo em ConteudoVariante e leia no componente. */
@@ -65,3 +66,15 @@ export const CONTEUDO: Record<Variante, ConteudoVariante> = {
     },
   },
 };
+
+/** Valor do parâmetro src da Hotmart ("origem" no relatório de vendas). */
+export function srcHotmart(variante: Variante) {
+  return `variante-${variante}`;
+}
+
+/** Devolve a URL de checkout com src=variante-X (substitui src existente). */
+export function comSrcHotmart(url: string, variante: Variante) {
+  const u = new URL(url);
+  u.searchParams.set("src", srcHotmart(variante));
+  return u.toString();
+}

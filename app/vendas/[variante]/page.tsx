@@ -17,6 +17,7 @@ import { Pilares } from "../_components/pilares";
 import { RastreioVariante } from "../_components/rastreio-variante";
 import { Rodape } from "../_components/rodape";
 import { Sobre } from "../_components/sobre";
+import { VarianteProvider } from "../_components/variante-contexto";
 
 /* Uma página estática por variante do teste A/B. O usuário chega por
    /vendas?v=b (reescrito em next.config.ts) ou direto por /vendas/b. */
@@ -33,6 +34,7 @@ export default async function PaginaVendas({ params }: { params: Promise<{ varia
   const conteudo = CONTEUDO[variante];
 
   return (
+    <VarianteProvider variante={variante}>
     <main className="pb-20 md:pb-0" data-variante={variante}>
       <RastreioVariante variante={variante} />
       <AvisosDev variante={variante} />
@@ -52,5 +54,6 @@ export default async function PaginaVendas({ params }: { params: Promise<{ varia
       <CtaFlutuante />
       <Notificacoes />
     </main>
+    </VarianteProvider>
   );
 }
