@@ -1,8 +1,16 @@
 "use client";
+import { useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { OFERTA } from "@/lib/oferta";
 import { comSrcHotmart } from "@/lib/variantes";
 import { useVariante } from "./variante-contexto";
+
+declare global {
+  interface Window {
+    /** definida pelo script de UTMs em app/layout.tsx */
+    docmevAtualizarLinks?: () => void;
+  }
+}
 
 type Props = {
   children: React.ReactNode;
@@ -27,6 +35,14 @@ export function CtaBotao({
   id,
 }: Props) {
   const varianteTeste = useVariante();
+
+  // Botão que nasce depois do carregamento (pop-up de saída) não foi visto
+  // pelo script de UTMs do layout; reaplica. Nos botões iniciais o script
+  // ainda não carregou aqui e cuida sozinho logo em seguida.
+  useEffect(() => {
+    window.docmevAtualizarLinks?.();
+  }, []);
+
   return (
     <a
       id={id}

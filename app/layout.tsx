@@ -61,9 +61,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         {children}
         <Analytics />
         {/* Script de rastreio de UTMs (Comunidade Nova Ordem do Digital),
-            inserido a pedido do Vinicius em 2026-10-13. Única alteração: links
+            inserido a pedido do Vinicius em 2026-10-13. Alterações: (1) links
             mailto:/tel: são pulados, porque new URL() neles devolve origin
-            "null" e o href sairia como "nullsuporte@..." (bug visto no MFF). */}
+            "null" e o href sairia como "nullsuporte@..." (bug visto no MFF);
+            (2) virou função reaplicável, chamada pelo CtaBotao ao montar, pra
+            o pop-up de saída também sair com UTMs e sck (2026-10-14). */}
         <Script
           id="rastreio-utms"
           strategy="afterInteractive"
@@ -71,7 +73,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             __html: `
 console.log('%cScript de rastreio by Comunidade Nova Ordem do Digital - Dericson Calari e Samuel Choairy', 'color: purple; font-size: 20px;');
 
-(function () {
+// Virou função nomeada e exposta em window.docmevAtualizarLinks pra ser
+// chamada de novo quando um link nasce depois do carregamento (pop-up de
+// saída). É idempotente: só acrescenta parâmetro que o link ainda não tem.
+function docmevAtualizarLinks() {
     let parametros = ["utm_source"];
     const url = new URL(window.location.href);
     const params = new URLSearchParams(url.search);
@@ -141,7 +146,9 @@ console.log('%cScript de rastreio by Comunidade Nova Ordem do Digital - Dericson
         }
     });
 
-})();
+}
+window.docmevAtualizarLinks = docmevAtualizarLinks;
+docmevAtualizarLinks();
             `,
           }}
         />
