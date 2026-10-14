@@ -6,6 +6,19 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [{ source: "/", destination: "/vendas", permanent: false }];
   },
+  // Teste A/B: /vendas?v=b vira /vendas/b por baixo dos panos (a URL do
+  // visitante não muda). Sem ?v= ou com valor desconhecido, serve a padrão.
+  // Mantém em sincronia com VARIANTES / VARIANTE_PADRAO em lib/variantes.ts.
+  async rewrites() {
+    return [
+      {
+        source: "/vendas",
+        has: [{ type: "query", key: "v", value: "(?<variante>a|b)" }],
+        destination: "/vendas/:variante",
+      },
+      { source: "/vendas", destination: "/vendas/a" },
+    ];
+  },
   images: {
     // AVIF/WebP + srcset: o celular baixa a foto no tamanho da tela dele.
     formats: ["image/avif", "image/webp"],

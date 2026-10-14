@@ -1,10 +1,12 @@
 import { CreditCard, LockKey, ShieldCheck, Warning } from "@phosphor-icons/react/dist/ssr";
 import Image from "next/image";
 import { OFERTA, brl } from "@/lib/oferta";
+import type { ConteudoVariante } from "@/lib/variantes";
 import { CtaBotao } from "./cta-botao";
 import { VslPlayer } from "./vsl-player";
 
-export function Hero() {
+/* Título, subtítulo e texto do CTA vêm da variante do teste A/B (lib/variantes.ts). */
+export function Hero({ conteudo }: { conteudo: ConteudoVariante["hero"] }) {
   return (
     <section className="dm-navy-textura relative overflow-hidden text-white">
       <div className="relative mx-auto flex max-w-5xl flex-col items-center px-4 pb-16 pt-8 text-center sm:pt-10 lg:pb-24">
@@ -26,12 +28,11 @@ export function Hero() {
         </p>
 
         <h1 className="max-w-4xl text-balance text-3xl font-extrabold leading-[1.1] tracking-tight sm:text-4xl lg:text-[3.25rem]">
-          A American Heart Association revelou os 8 fatores que determinam quem vive muito e quem morre cedo
+          {conteudo.titulo}
         </h1>
 
         <p className="mt-5 max-w-2xl text-pretty text-base leading-relaxed text-azul-claro sm:text-lg">
-          Descubra como milhares de brasileiros já usaram este protocolo para reduzir o risco de infarto,
-          AVC e morte súbita, sem depender de remédios
+          {conteudo.subtitulo}
         </p>
 
         <div className="mt-10 w-full max-w-4xl">
@@ -42,7 +43,7 @@ export function Hero() {
         </div>
 
         <div id="hero-cta" className="mt-10 flex w-full flex-col items-center gap-4">
-          <CtaBotao pulsante className="sm:whitespace-nowrap">Quero acessar o docMEV agora</CtaBotao>
+          <CtaBotao pulsante className="sm:whitespace-nowrap">{conteudo.cta}</CtaBotao>
           <p className="text-sm font-medium text-azul-claro">
             Menos de {brl(OFERTA.porDia, true)} por dia para transformar sua saúde
           </p>
