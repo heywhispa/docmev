@@ -12,8 +12,8 @@ export const OFERTA = {
   nome: "docMEV",
   nomeCompleto: "docMEV: O Documento da Medicina do Estilo de Vida",
 
-  // Checkout Hotmart (oferta d9jlpmi3). A variável de ambiente, se existir, sobrepõe.
-  checkoutUrl: process.env.NEXT_PUBLIC_CHECKOUT_URL ?? "https://pay.hotmart.com/Y108012325N?off=d9jlpmi3",
+  // Checkout Hotmart (oferta x8g64q7d). A variável de ambiente, se existir, sobrepõe.
+  checkoutUrl: process.env.NEXT_PUBLIC_CHECKOUT_URL ?? "https://pay.hotmart.com/Y108012325N?off=x8g64q7d",
   // TODO: link da condição especial da VSL (20% OFF, R$ 237 à vista), que a
   // VTurb mostra por volta de 28:50 pra quem ainda não clicou. Na Hotmart é
   // outra oferta (?off=) ou cupom (&coupon=). Enquanto for igual ao checkout
@@ -21,7 +21,7 @@ export const OFERTA = {
   checkoutUrlCondicaoEspecial:
     process.env.NEXT_PUBLIC_CHECKOUT_URL_CUPOM ??
     process.env.NEXT_PUBLIC_CHECKOUT_URL ??
-    "https://pay.hotmart.com/Y108012325N?off=d9jlpmi3",
+    "https://pay.hotmart.com/Y108012325N?off=x8g64q7d",
 
   // TODO: URL de embed da VSL (Vturb / YouTube / Vimeo). Vazio mostra o poster.
   vslEmbedUrl: process.env.NEXT_PUBLIC_VSL_EMBED_URL ?? "",
