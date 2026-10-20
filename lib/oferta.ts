@@ -20,13 +20,17 @@ export const OFERTA = {
   vslEmbedUrl: process.env.NEXT_PUBLIC_VSL_EMBED_URL ?? "",
   vslDuracaoMin: 40,
 
+  // A página dá ênfase ao 12x; o à vista aparece como alternativa.
+  // valorParcela = R$ 297 a 3,49% a.m. (taxa que o próprio checkout da Hotmart
+  // carrega no estado da página, tabela Price em 12x). Conferir no checkout
+  // com um cartão real, pois a Hotmart só mostra as parcelas depois dos dados do cartão.
   precoRegular: 1997,
-  precoHoje: 447,
+  precoHoje: 297,
   parcelas: 12,
-  valorParcela: 48.09,
-  economia: 1500,
-  descontoPct: 60,
-  porDia: 6.5,
+  valorParcela: 30.72,
+  economia: 1700,
+  descontoPct: 85,
+  porDia: 1.05, // 30,72 / 30 dias ≈ R$ 1,02
 
   garantiaDias: 30,
   programaSemanas: 8,
@@ -45,10 +49,13 @@ export const OFERTA = {
 
 export const DR_ERALDO = {
   nome: "Dr. Eraldo Moraes",
-  // TODO: todos os dados abaixo vieram como "XXXXX" no briefing.
-  crm: "CRM-SP XXXXX",
-  anosExperiencia: "XX anos de experiência clínica",
-  pacientes: "Mais de XX.000 pacientes atendidos",
+  // Dados lidos da tarja de credenciais da própria VSL (ver análise em
+  // 02_Anuncios/EM_TRAF_ANALISE_2026-10-19_Padrao-Edicao-VSL-8-Pilares_v1.md).
+  crm: "CRM-GO 16898",
+  rqe: "RQE 8449 · 8450 · 13300",
+  anosExperiencia: "Mais de 20 anos de consultório",
+  doutorado: "Doutorado pela UNIFESP",
+  foto: "/fotos/dr-eraldo-moraes.jpg",
 } as const;
 
 export function brl(valor: number, centavos = false) {

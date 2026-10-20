@@ -50,7 +50,7 @@ export function Hero({ conteudo }: { conteudo: ConteudoVariante["hero"] }) {
           <ul className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs font-semibold text-white/75 sm:text-sm">
             <li className="flex items-center gap-1.5"><ShieldCheck weight="fill" className="size-4 text-azul-claro" aria-hidden />Garantia de {OFERTA.garantiaDias} dias</li>
             <li className="flex items-center gap-1.5"><LockKey weight="fill" className="size-4 text-azul-claro" aria-hidden />Compra 100% segura</li>
-            <li className="flex items-center gap-1.5"><CreditCard weight="fill" className="size-4 text-azul-claro" aria-hidden />Em até {OFERTA.parcelas}x</li>
+            <li className="flex items-center gap-1.5"><CreditCard weight="fill" className="size-4 text-azul-claro" aria-hidden />{OFERTA.parcelas}x de {brl(OFERTA.valorParcela, true)}</li>
           </ul>
         </div>
       </div>

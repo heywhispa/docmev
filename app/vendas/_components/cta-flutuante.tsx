@@ -26,8 +26,8 @@ export function CtaFlutuante() {
     >
       <div className="flex items-center gap-3">
         <div className="shrink-0 leading-tight">
-          <p className="text-xs text-cinza-suave line-through">{brl(OFERTA.precoRegular)}</p>
-          <p className="text-lg font-extrabold tabular-nums">{brl(OFERTA.precoHoje)}</p>
+          <p className="text-lg font-extrabold tabular-nums">{OFERTA.parcelas}x {brl(OFERTA.valorParcela, true)}</p>
+          <p className="text-xs text-cinza-suave">ou {brl(OFERTA.precoHoje)} à vista</p>
         </div>
         <CtaBotao tamanho="md" className="flex-1">Quero acessar agora</CtaBotao>
       </div>

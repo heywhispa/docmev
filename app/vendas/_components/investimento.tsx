@@ -40,9 +40,12 @@ export function Investimento() {
             Preço regular: <span className="line-through">{brl(OFERTA.precoRegular)}</span>
           </p>
           <p className="mt-4 text-sm font-bold uppercase tracking-wide text-vermelho">Hoje apenas</p>
-          <p className="mt-1 text-6xl font-extrabold leading-none tracking-tight tabular-nums sm:text-7xl">{brl(OFERTA.precoHoje)}</p>
-          <p className="mt-3 text-xl font-semibold">
-            ou {OFERTA.parcelas}x de <span className="tabular-nums">{brl(OFERTA.valorParcela, true)}</span>
+          <p className="mt-1 flex flex-wrap items-baseline gap-x-3">
+            <span className="text-3xl font-extrabold sm:text-4xl">{OFERTA.parcelas}x de</span>
+            <span className="text-6xl font-extrabold leading-none tracking-tight tabular-nums sm:text-7xl">{brl(OFERTA.valorParcela, true)}</span>
+          </p>
+          <p className="mt-3 text-lg font-medium text-white/75">
+            ou <span className="tabular-nums font-semibold text-white">{brl(OFERTA.precoHoje)}</span> à vista
           </p>
           <p className="mt-5 inline-block rounded-dm bg-azul-claro px-3 py-1.5 text-sm font-bold text-navy">
             Economia de {brl(OFERTA.economia)} ({OFERTA.descontoPct}% OFF)

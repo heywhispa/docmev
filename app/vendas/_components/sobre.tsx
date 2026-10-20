@@ -2,16 +2,15 @@ import Image from "next/image";
 import { Check } from "@phosphor-icons/react/dist/ssr";
 import { DR_ERALDO } from "@/lib/oferta";
 
-/* TODO: foto do Dr. Eraldo. O cliente rejeitou as fotos do branding; a
-   direção fotográfica ainda será definida. O bloco à esquerda é a reserva
-   de espaço (3:4) pra foto final entrar sem mexer no layout. */
+/* Foto: ensaio enviado pelo cliente em 2026-09-22 (jaleco, estetoscópio,
+   diplomas ao fundo). Original em 01_ALICERCE/05_REPOSITORIO-DE-ASSETS/Fotos-Eraldo. */
 const CREDENCIAIS = [
   `Cardiologista ${DR_ERALDO.crm}`,
+  DR_ERALDO.rqe,
   DR_ERALDO.anosExperiencia,
-  "Especialização em Medicina do Estilo de Vida",
+  DR_ERALDO.doutorado,
   "Membro da Sociedade Brasileira de Cardiologia",
-  DR_ERALDO.pacientes,
-  "Palestrante em congressos médicos",
+  "Especialização em Medicina do Estilo de Vida",
 ];
 
 export function Sobre() {
@@ -19,8 +18,14 @@ export function Sobre() {
     <section className="mx-auto max-w-7xl px-4 py-20 lg:py-28">
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-center">
         <div className="lg:col-span-5">
-          <div className="dm-navy-textura relative flex aspect-[3/4] max-h-[560px] w-full items-center justify-center overflow-hidden rounded-card">
-            <Image src="/marca/docmev-logo-branco.svg" alt="" width={200} height={43} className="relative w-40 opacity-60" />
+          <div className="relative aspect-[3/4] max-h-[560px] w-full overflow-hidden rounded-card bg-navy shadow-[0_30px_80px_rgba(10,39,64,0.25)]">
+            <Image
+              src={DR_ERALDO.foto}
+              alt={`${DR_ERALDO.nome}, cardiologista, de jaleco e estetoscópio em seu consultório`}
+              fill
+              sizes="(min-width: 1024px) 40vw, 100vw"
+              className="object-cover"
+            />
           </div>
         </div>
         <div className="lg:col-span-7">
