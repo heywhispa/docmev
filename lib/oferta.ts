@@ -14,14 +14,11 @@ export const OFERTA = {
 
   // Checkout Hotmart (oferta x8g64q7d). A variável de ambiente, se existir, sobrepõe.
   checkoutUrl: process.env.NEXT_PUBLIC_CHECKOUT_URL ?? "https://pay.hotmart.com/Y108012325N?off=x8g64q7d",
-  // TODO: link da condição especial da VSL (20% OFF, R$ 237 à vista), que a
-  // VTurb mostra por volta de 28:50 pra quem ainda não clicou. Na Hotmart é
-  // outra oferta (?off=) ou cupom (&coupon=). Enquanto for igual ao checkout
-  // normal, o pop-up de saída NÃO aparece (ver notificacoes.tsx).
+  // Condição especial da VSL (20% OFF, R$ 237 à vista), que a VTurb mostra por
+  // volta de 28:50 pra quem ainda não clicou. Oferta Hotmart 3ret8gsy. Se este
+  // link for igual ao checkout normal, o pop-up de saída NÃO aparece (ver notificacoes.tsx).
   checkoutUrlCondicaoEspecial:
-    process.env.NEXT_PUBLIC_CHECKOUT_URL_CUPOM ??
-    process.env.NEXT_PUBLIC_CHECKOUT_URL ??
-    "https://pay.hotmart.com/Y108012325N?off=x8g64q7d",
+    process.env.NEXT_PUBLIC_CHECKOUT_URL_CUPOM ?? "https://pay.hotmart.com/Y108012325N?off=3ret8gsy",
 
   // TODO: URL de embed da VSL (Vturb / YouTube / Vimeo). Vazio mostra o poster.
   vslEmbedUrl: process.env.NEXT_PUBLIC_VSL_EMBED_URL ?? "",
