@@ -2,14 +2,17 @@
 import { useEffect, useState } from "react";
 import { Fire, X } from "@phosphor-icons/react/dist/ssr";
 import { NOTIFICACOES, POPUP_SAIDA_ATIVO } from "@/lib/notificacoes";
-import { OFERTA } from "@/lib/oferta";
+import { OFERTA, brl } from "@/lib/oferta";
 import { CtaBotao } from "./cta-botao";
 
 const CHAVE_SAIDA = "docmev_popup_saida";
 
 /* Toasts agendados (só com dado real em lib/notificacoes.ts) e pop-up de
-   saída com 10% extra, uma vez por sessão, só no desktop (o celular não
-   tem "mouse saindo da janela"). */
+   saída com a condição especial da VSL (20% OFF, à vista), uma vez por
+   sessão, só no desktop (o celular não tem "mouse saindo da janela").
+   Só liga quando existe um link próprio pra condição especial: prometer
+   desconto e mandar pro checkout cheio é propaganda enganosa. */
+const CONDICAO_ESPECIAL_DISPONIVEL = OFERTA.checkoutUrlCondicaoEspecial !== OFERTA.checkoutUrl;
 export function Notificacoes() {
   const [toast, setToast] = useState<string | null>(null);
   const [saida, setSaida] = useState(false);
@@ -23,7 +26,7 @@ export function Notificacoes() {
   }, []);
 
   useEffect(() => {
-    if (!POPUP_SAIDA_ATIVO) return;
+    if (!POPUP_SAIDA_ATIVO || !CONDICAO_ESPECIAL_DISPONIVEL) return;
     // Só em dispositivo com mouse: no toque não existe "cursor saindo da janela".
     if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
     const jaViu = () => { try { return sessionStorage.getItem(CHAVE_SAIDA) === "1"; } catch { return false; } };
@@ -65,13 +68,13 @@ export function Notificacoes() {
             <button type="button" onClick={() => setSaida(false)} aria-label="Fechar" className="absolute right-4 top-4 rounded-full p-2 text-cinza-suave hover:bg-azul-claro hover:text-navy">
               <X weight="bold" className="size-5" />
             </button>
-            <p className="text-sm font-bold uppercase tracking-wide text-vermelho">Espere!</p>
+            <p className="text-sm font-bold uppercase tracking-wide text-vermelho">Condição especial liberada</p>
             <h2 id="popup-saida-titulo" className="mt-2 text-2xl font-extrabold leading-tight">
-              Ganhe 10% de desconto adicional antes de sair
+              docMEV completo com {OFERTA.descontoCondicaoEspecialPct}% OFF: {brl(OFERTA.precoCondicaoEspecial)} à vista
             </h2>
-            <p className="mt-3 text-cinza">Válido só nesta visita, por cima dos {OFERTA.descontoPct}% já liberados.</p>
+            <p className="mt-3 text-cinza">Válida só nesta visita. Os 3 bônus continuam inclusos.</p>
             <div className="mt-6">
-              <CtaBotao href={OFERTA.checkoutUrlCupom} tamanho="md" className="w-full">Quero os 10% extras</CtaBotao>
+              <CtaBotao href={OFERTA.checkoutUrlCondicaoEspecial} tamanho="md" className="w-full">Quero a condição especial</CtaBotao>
             </div>
           </div>
         </div>

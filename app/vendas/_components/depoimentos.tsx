@@ -1,7 +1,7 @@
 import { Star } from "@phosphor-icons/react/dist/ssr";
 import { cn } from "@/lib/utils";
 
-/* ATENÇÃO: os três depoimentos abaixo vieram do briefing como exemplo.
+/* ATENÇÃO: os dois depoimentos abaixo são os casos que a VSL conta (23:40–25:20).
    Antes de publicar: substituir por relatos reais, com autorização escrita,
    e validar com o jurídico. A Resolução CFM 2.336/2023 restringe divulgação
    de depoimento de paciente e de antes/depois em publicidade médica. */
@@ -13,22 +13,18 @@ type Depoimento = {
 
 const DEPOIMENTOS: Depoimento[] = [
   {
-    nome: "Roberto Silva", idade: 52, profissao: "Empresário", iniciais: "RS",
-    texto: "Parei 4 dos 5 remédios. Meu cardiologista disse que ganhei 20 anos de vida.",
+    nome: "Roberto", idade: 52, profissao: "Executivo", iniciais: "R",
+    texto: "Os remédios caíram de 5 pra 1 em 8 semanas. Hoje, um ano depois, não tomo nenhum. Meu cardiologista disse: “você ganhou 20 anos de vida”.",
     metricas: [
       { rotulo: "Pressão", antes: "15/10", depois: "12/8" },
       { rotulo: "Colesterol", antes: "280", depois: "180" },
-      { rotulo: "Peso", antes: "", depois: "-13 kg" },
+      { rotulo: "Peso", antes: "102 kg", depois: "89 kg" },
       { rotulo: "Prazo", antes: "", depois: "8 semanas" },
     ],
   },
   {
-    nome: "Maria Santos", idade: 48, profissao: "Professora", iniciais: "MS",
-    texto: "Tinha síndrome metabólica, cansaço crônico e insônia. Hoje durmo a noite toda, tenho energia de sobra e perdi 9 kg sem fazer dieta.",
-  },
-  {
-    nome: "José Carlos", idade: 57, profissao: "Engenheiro", iniciais: "JC",
-    texto: "Pré-diabético, hipertenso, 108 kg. Hoje: glicose normal, pressão controlada, 89 kg. Zero remédios.",
+    nome: "Maria", idade: 48, profissao: "Professora", iniciais: "M",
+    texto: "Eu sentia que estava envelhecendo 3 anos a cada ano. Em 8 semanas voltei a ser eu mesma: durmo a noite inteira, perdi 9 quilos sem fazer dieta e meus alunos perguntam o que aconteceu comigo.",
   },
 ];
 
@@ -61,8 +57,15 @@ export function Depoimentos() {
     <section className="bg-white py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-4">
         <h2 className="max-w-3xl text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl">
-          Veja quem já transformou a vida com o docMEV
+          Pessoas que aplicam os 8 pilares relatam
         </h2>
+        <ul className="mt-6 grid max-w-4xl gap-x-8 gap-y-2 text-[17px] font-medium text-cinza sm:grid-cols-2">
+          <li>Mais energia e disposição nas primeiras 2 semanas</li>
+          <li>Pressão normalizada em 4 semanas</li>
+          <li>Perda de 2 a 8 quilos em menos de 2 meses</li>
+          <li>Redução de até 30% no colesterol em 3 meses</li>
+          <li className="sm:col-span-2">Diminuição ou eliminação de medicamentos em 6 meses, conforme o caso e com acompanhamento do seu médico</li>
+        </ul>
 
         <div className="mt-12 grid grid-cols-1 gap-5 lg:grid-cols-5">
           <figure className="flex flex-col justify-between rounded-card bg-navy p-7 text-white lg:col-span-3 lg:p-10">

@@ -6,7 +6,7 @@ import { CONTEUDO, type Variante } from "@/lib/variantes";
 export function AvisosDev({ variante }: { variante: Variante }) {
   if (process.env.NODE_ENV === "production") return null;
   const pendencias = [
-    OFERTA.checkoutUrlCupom === OFERTA.checkoutUrl && "Cupom de 10% do pop-up de saída (NEXT_PUBLIC_CHECKOUT_URL_CUPOM)",
+    OFERTA.checkoutUrlCondicaoEspecial === OFERTA.checkoutUrl && "Link da condição especial 20% OFF / R$ 237 (NEXT_PUBLIC_CHECKOUT_URL_CUPOM); pop-up de saída desligado até lá",
     OFERTA.vslEmbedUrl === "" && "URL da VSL (NEXT_PUBLIC_VSL_EMBED_URL)",
     OFERTA.whatsapp.includes("99999") && "WhatsApp e e-mail de suporte",
     "Depoimentos reais com autorização (validar com jurídico: CFM 2.336/2023)",

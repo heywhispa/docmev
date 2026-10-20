@@ -18,5 +18,6 @@ export const NOTIFICACOES: Notificacao[] = [
   // { texto: "Últimas 27 vagas disponíveis este mês", aposSegundos: 60 },
 ];
 
-/** Pop-up de saída com 10% extra. Independe da lista acima. */
+/** Pop-up de saída com a condição especial da VSL (20% OFF à vista). Independe
+    da lista acima, mas só aparece se houver link próprio (ver notificacoes.tsx). */
 export const POPUP_SAIDA_ATIVO = true;

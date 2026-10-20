@@ -2,12 +2,13 @@ import { Plus } from "@phosphor-icons/react/dist/ssr";
 import { OFERTA } from "@/lib/oferta";
 
 const FAQ = [
-  { p: "Preciso parar meus remédios?", r: "Não. O docMEV trabalha junto com seu tratamento atual. Conforme você melhora, seu médico poderá ajustar ou reduzir medicações." },
-  { p: "Quanto tempo preciso dedicar?", r: "Apenas 15 minutos por dia. Os vídeos são curtos e as práticas são incorporadas na sua rotina normal." },
-  { p: "E se eu não conseguir seguir?", r: "O programa é progressivo e adaptável. Você avança no seu ritmo. Além disso, tem suporte completo na comunidade." },
-  { p: "Funciona na minha idade?", r: "Sim. Temos alunos de 35 a 78 anos. Os 8 pilares funcionam em qualquer idade, com adaptações específicas." },
-  { p: "E se não funcionar para mim?", r: `Por isso temos garantia de ${OFERTA.garantiaDias} dias. Se não sentir diferença, devolvemos 100% do valor.` },
-  { p: "Preciso comprar suplementos caros?", r: "Não. O foco são mudanças de estilo de vida. Suplementos são opcionais e ensinamos os mais baratos e eficazes." },
+  { p: "Preciso parar meus remédios?", r: "Não. O docMEV trabalha junto com o seu tratamento atual. Conforme os seus exames melhoram, o seu médico pode ajustar ou reduzir as medicações. Nunca pare um remédio por conta própria." },
+  { p: "Quanto tempo preciso dedicar por dia?", r: `Cerca de ${OFERTA.minutosPorDia} minutos por dia. As práticas entram na sua rotina normal: sem dieta extrema, sem academia.` },
+  { p: "Por onde eu começo?", r: "Pelo Teste de Autodiagnóstico, no primeiro dia. Ele mostra qual é a primeira peça do seu dominó e em que ordem levantar as outras. As aulas são liberadas de acordo com a sua necessidade e o seu momento de vida." },
+  { p: "Funciona na minha idade?", r: "Não importa a sua idade, se você nunca pisou numa academia ou se já toma 3, 4, 5 remédios. O docMEV começa do seu nível." },
+  { p: "E se não funcionar para mim?", r: `Você tem duas garantias. ${OFERTA.garantiaDias} dias incondicional: devolvemos 100% do valor, sem perguntas. E a Garantia do Cardiologista: se você aplicar o protocolo por ${OFERTA.programaSemanas} semanas e não sentir diferença na energia, no sono ou nos exames, o Dr. Eraldo devolve o dobro do que você investiu.` },
+  { p: "Como recebo o acesso?", r: "Depois do pagamento, o acesso chega na hora no seu e-mail. No cartão, a liberação é imediata; no boleto, após a compensação." },
+  { p: "Preciso comprar suplementos caros?", r: "Não. O foco são mudanças de estilo de vida. O Guia de Suplementação Inteligente (bônus) mostra quais suplementos realmente funcionam e quais são dinheiro jogado fora." },
 ];
 
 export function Faq() {

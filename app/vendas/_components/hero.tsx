@@ -38,14 +38,14 @@ export function Hero({ conteudo }: { conteudo: ConteudoVariante["hero"] }) {
         <div className="mt-10 w-full max-w-4xl">
           <VslPlayer />
           <p className="mx-auto mt-4 max-w-2xl text-sm text-white/70 sm:text-base">
-            Assista ao vídeo acima para descobrir o método completo dos 8 pilares que pode adicionar 10, 15 ou até 20 anos na sua vida
+            Assista ao vídeo acima para descobrir qual é a primeira peça do seu dominó e o método dos 8 pilares que pode adicionar 10, 15, até 20 anos na sua vida
           </p>
         </div>
 
         <div id="hero-cta" className="mt-10 flex w-full flex-col items-center gap-4">
           <CtaBotao pulsante className="sm:whitespace-nowrap">{conteudo.cta}</CtaBotao>
           <p className="text-sm font-medium text-azul-claro">
-            Menos de {brl(OFERTA.porDia, true)} por dia para transformar sua saúde
+            Menos de {brl(OFERTA.porMes)} por mês. Menos do que você gasta em remédios em um único mês.
           </p>
           <ul className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs font-semibold text-white/75 sm:text-sm">
             <li className="flex items-center gap-1.5"><ShieldCheck weight="fill" className="size-4 text-azul-claro" aria-hidden />Garantia de {OFERTA.garantiaDias} dias</li>
