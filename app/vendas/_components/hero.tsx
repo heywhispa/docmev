@@ -4,10 +4,14 @@ import { OFERTA, brl } from "@/lib/oferta";
 import type { ConteudoVariante } from "@/lib/variantes";
 import { CtaBotao } from "./cta-botao";
 import { Revelado } from "./vsl-revelacao";
+import type { ReactNode } from "react";
 import { VslPlayer } from "./vsl-player";
 
 /* Título, subtítulo e texto do CTA vêm da variante do teste A/B (lib/variantes.ts). */
-export function Hero({ conteudo }: { conteudo: ConteudoVariante["hero"] }) {
+/* comDelay: o CTA e o preço abaixo da VSL só aparecem no 1º CTA (ver vsl-revelacao.tsx).
+   A cópia /bio usa comDelay={false} e mostra tudo desde o começo. */
+export function Hero({ conteudo, comDelay = true }: { conteudo: ConteudoVariante["hero"]; comDelay?: boolean }) {
+  const revelar = (node: ReactNode) => (comDelay ? <Revelado>{node}</Revelado> : node);
   return (
     <section className="dm-navy-textura relative overflow-hidden text-white">
       <div className="relative mx-auto flex max-w-5xl flex-col items-center px-4 pb-16 pt-8 text-center sm:pt-10 lg:pb-24">
@@ -43,7 +47,7 @@ export function Hero({ conteudo }: { conteudo: ConteudoVariante["hero"] }) {
           </p>
         </div>
 
-        <Revelado>
+        {revelar(
         <div id="hero-cta" className="mt-10 flex w-full flex-col items-center gap-4">
           <CtaBotao pulsante className="sm:whitespace-nowrap">{conteudo.cta}</CtaBotao>
           <p className="text-sm font-medium text-azul-claro">
@@ -55,7 +59,7 @@ export function Hero({ conteudo }: { conteudo: ConteudoVariante["hero"] }) {
             <li className="flex items-center gap-1.5"><CreditCard weight="fill" className="size-4 text-azul-claro" aria-hidden />{OFERTA.parcelas}x de {brl(OFERTA.valorParcela, true)}</li>
           </ul>
         </div>
-        </Revelado>
+        )}
       </div>
     </section>
   );
