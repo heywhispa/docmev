@@ -17,7 +17,7 @@ export function Hero({ conteudo }: { conteudo: ConteudoVariante["hero"] }) {
           width={132}
           height={28}
           priority
-          className="mb-8 h-7 w-auto"
+          className="mb-5 h-5 w-auto"
         />
 
         <p className="mb-5 flex max-w-3xl items-start gap-2 text-left text-sm font-semibold leading-snug text-azul-claro sm:text-center sm:text-base">
