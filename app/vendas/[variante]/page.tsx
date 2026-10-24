@@ -56,9 +56,9 @@ export default async function PaginaVendas({ params }: { params: Promise<{ varia
           <Sobre />
           <CtaFinal />
           <CtaFlutuante />
+          <Rodape />
         </Revelado>
       </VslRevelacao>
-      <Rodape />
       <Notificacoes />
     </main>
     </VarianteProvider>
