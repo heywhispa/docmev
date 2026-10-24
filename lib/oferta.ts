@@ -20,7 +20,13 @@ export const OFERTA = {
   checkoutUrlCondicaoEspecial:
     process.env.NEXT_PUBLIC_CHECKOUT_URL_CUPOM ?? "https://pay.hotmart.com/Y108012325N?off=3ret8gsy",
 
-  // TODO: URL de embed da VSL (Vturb / YouTube / Vimeo). Vazio mostra o poster.
+  // VSL hospedada na VTurb (smartplayer, formato vertical 3:4). Se playerId estiver
+  // vazio, cai no iframe de vslEmbedUrl; se os dois estiverem vazios, mostra o poster.
+  vslVturb: {
+    playerId: "vid-6adbe298d8ab5ce9041d5e53",
+    scriptUrl:
+      "https://scripts.converteai.net/86c1ada0-8f16-48cd-ab77-c21c6c2292bc/players/6adbe298d8ab5ce9041d5e53/v4/player.js",
+  },
   vslEmbedUrl: process.env.NEXT_PUBLIC_VSL_EMBED_URL ?? "",
   vslDuracaoMin: 31,
 
