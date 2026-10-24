@@ -10,7 +10,6 @@ const CREDENCIAIS = [
   DR_ERALDO.anosExperiencia,
   DR_ERALDO.doutorado,
   "Membro da Sociedade Brasileira de Cardiologia",
-  "Especialização em Medicina do Estilo de Vida",
 ];
 
 export function Sobre() {

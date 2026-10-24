@@ -1,13 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Bank, CreditCard, DeviceMobile, EnvelopeSimple, LockKey, WhatsappLogo } from "@phosphor-icons/react/dist/ssr";
+import { Bank, CreditCard, DeviceMobile, LockKey } from "@phosphor-icons/react/dist/ssr";
 import { OFERTA } from "@/lib/oferta";
 
 export function Rodape() {
   const ano = 2026; // fixo: new Date() quebra o prerender com cacheComponents
   return (
     <footer className="bg-navy-esc py-16 text-white/75">
-      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-4 md:grid-cols-3">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-4 md:grid-cols-2">
         <div>
           <Image src="/marca/docmev-logo-branco.svg" alt="docMEV" width={120} height={26} className="h-6 w-auto" />
           <p className="mt-5 flex items-start gap-2 text-sm leading-relaxed">
@@ -21,13 +21,6 @@ export function Rodape() {
             <li className="flex items-center gap-2"><CreditCard weight="fill" className="size-4 text-azul-claro" aria-hidden />Cartão (até {OFERTA.parcelas}x)</li>
             <li className="flex items-center gap-2"><DeviceMobile weight="fill" className="size-4 text-azul-claro" aria-hidden />PIX</li>
             <li className="flex items-center gap-2"><Bank weight="fill" className="size-4 text-azul-claro" aria-hidden />Boleto</li>
-          </ul>
-        </div>
-        <div>
-          <p className="text-sm font-bold uppercase tracking-wide text-white">Dúvidas?</p>
-          <ul className="mt-4 space-y-2 text-sm">
-            <li><a href={`mailto:${OFERTA.suporteEmail}`} className="flex items-center gap-2 hover:text-white"><EnvelopeSimple weight="fill" className="size-4 text-azul-claro" aria-hidden />{OFERTA.suporteEmail}</a></li>
-            <li><a href={OFERTA.whatsappLink} className="flex items-center gap-2 hover:text-white"><WhatsappLogo weight="fill" className="size-4 text-azul-claro" aria-hidden />WhatsApp: {OFERTA.whatsapp}</a></li>
           </ul>
         </div>
       </div>
