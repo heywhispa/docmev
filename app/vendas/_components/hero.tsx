@@ -38,11 +38,9 @@ export function Hero({ conteudo }: { conteudo: ConteudoVariante["hero"] }) {
 
         <div className="mt-10 w-full max-w-4xl">
           <VslPlayer />
-          <Revelado>
-            <p className="mx-auto mt-4 max-w-2xl text-sm text-white/70 sm:text-base">
-              Assista ao vídeo acima para descobrir qual é a primeira peça do seu dominó e o método dos 8 pilares que pode adicionar 10, 15, até 20 anos na sua vida
-            </p>
-          </Revelado>
+          <p className="mx-auto mt-4 max-w-2xl text-sm text-white/70 sm:text-base">
+            Assista ao vídeo acima para descobrir qual é a primeira peça do seu dominó e o método dos 8 pilares que pode adicionar 10, 15, até 20 anos na sua vida
+          </p>
         </div>
 
         <Revelado>
