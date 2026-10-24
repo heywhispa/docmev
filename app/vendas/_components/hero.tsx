@@ -3,6 +3,7 @@ import Image from "next/image";
 import { OFERTA, brl } from "@/lib/oferta";
 import type { ConteudoVariante } from "@/lib/variantes";
 import { CtaBotao } from "./cta-botao";
+import { Revelado } from "./vsl-revelacao";
 import { VslPlayer } from "./vsl-player";
 
 /* Título, subtítulo e texto do CTA vêm da variante do teste A/B (lib/variantes.ts). */
@@ -37,11 +38,14 @@ export function Hero({ conteudo }: { conteudo: ConteudoVariante["hero"] }) {
 
         <div className="mt-10 w-full max-w-4xl">
           <VslPlayer />
-          <p className="mx-auto mt-4 max-w-2xl text-sm text-white/70 sm:text-base">
-            Assista ao vídeo acima para descobrir qual é a primeira peça do seu dominó e o método dos 8 pilares que pode adicionar 10, 15, até 20 anos na sua vida
-          </p>
+          <Revelado>
+            <p className="mx-auto mt-4 max-w-2xl text-sm text-white/70 sm:text-base">
+              Assista ao vídeo acima para descobrir qual é a primeira peça do seu dominó e o método dos 8 pilares que pode adicionar 10, 15, até 20 anos na sua vida
+            </p>
+          </Revelado>
         </div>
 
+        <Revelado>
         <div id="hero-cta" className="mt-10 flex w-full flex-col items-center gap-4">
           <CtaBotao pulsante className="sm:whitespace-nowrap">{conteudo.cta}</CtaBotao>
           <p className="text-sm font-medium text-azul-claro">
@@ -53,6 +57,7 @@ export function Hero({ conteudo }: { conteudo: ConteudoVariante["hero"] }) {
             <li className="flex items-center gap-1.5"><CreditCard weight="fill" className="size-4 text-azul-claro" aria-hidden />{OFERTA.parcelas}x de {brl(OFERTA.valorParcela, true)}</li>
           </ul>
         </div>
+        </Revelado>
       </div>
     </section>
   );

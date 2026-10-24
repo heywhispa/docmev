@@ -21,13 +21,16 @@ export const OFERTA = {
     process.env.NEXT_PUBLIC_CHECKOUT_URL_CUPOM ?? "https://pay.hotmart.com/Y108012325N?off=3ret8gsy",
 
   // VSL hospedada na VTurb (smartplayer, formato vertical 3:4). Se playerId estiver
-  // vazio, cai no iframe de vslEmbedUrl; se os dois estiverem vazios, mostra o poster.
+  // vazio, cai no iframe de vslEmbedUrl e a página aparece sem esperar.
   vslVturb: {
     playerId: "vid-6adbe298d8ab5ce9041d5e53",
     scriptUrl:
       "https://scripts.converteai.net/86c1ada0-8f16-48cd-ab77-c21c6c2292bc/players/6adbe298d8ab5ce9041d5e53/v4/player.js",
   },
   vslEmbedUrl: process.env.NEXT_PUBLIC_VSL_EMBED_URL ?? "",
+  // Segundo do vídeo em que a página revela a tarja vermelha e tudo abaixo da VSL:
+  // 26:50 = 1º CTA do roteiro (1610 s). Confirmar com a gravação publicada.
+  vslRevelarEm: 1610,
   vslDuracaoMin: 31,
 
   // PREÇO. A página dá ênfase ao 12x; o à vista aparece como alternativa.

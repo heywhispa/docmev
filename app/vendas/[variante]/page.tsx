@@ -18,6 +18,7 @@ import { RastreioVariante } from "../_components/rastreio-variante";
 import { Rodape } from "../_components/rodape";
 import { Sobre } from "../_components/sobre";
 import { VarianteProvider } from "../_components/variante-contexto";
+import { Revelado, VslRevelacao } from "../_components/vsl-revelacao";
 
 /* Uma página estática por variante do teste A/B. O usuário chega por
    /vendas?variante=b (reescrito em next.config.ts) ou direto por /vendas/b. */
@@ -38,20 +39,26 @@ export default async function PaginaVendas({ params }: { params: Promise<{ varia
     <main className="pb-20 md:pb-0" data-variante={variante}>
       <RastreioVariante variante={variante} />
       <AvisosDev variante={variante} />
-      <BarraUrgencia />
-      <Hero conteudo={conteudo.hero} />
-      <Pilares />
-      <Depoimentos />
-      <Entregaveis />
-      <Bonus />
-      <Garantia />
-      <Investimento />
-      <Escassez />
-      <Faq />
-      <Sobre />
-      <CtaFinal />
+      <VslRevelacao>
+        <Revelado>
+          <BarraUrgencia />
+        </Revelado>
+        <Hero conteudo={conteudo.hero} />
+        <Revelado>
+          <Pilares />
+          <Depoimentos />
+          <Entregaveis />
+          <Bonus />
+          <Garantia />
+          <Investimento />
+          <Escassez />
+          <Faq />
+          <Sobre />
+          <CtaFinal />
+          <CtaFlutuante />
+        </Revelado>
+      </VslRevelacao>
       <Rodape />
-      <CtaFlutuante />
       <Notificacoes />
     </main>
     </VarianteProvider>
