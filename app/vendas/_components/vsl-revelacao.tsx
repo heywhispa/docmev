@@ -5,7 +5,7 @@ import { OFERTA } from "@/lib/oferta";
 /* Revela a tarja vermelha e tudo que está abaixo da VSL quando o vídeo chega
    ao segundo OFERTA.vslRevelarEm. Usa a API do smartplayer da VTurb
    (window.smartplayer.instances, evento "timeupdate" com o tempo em segundos).
-   Sem player VTurb configurado, revela na hora. Depois de revelado, fica revelado. */
+   Sem player VTurb configurado ou com OFERTA.vslComDelay = false, revela na hora. Depois de revelado, fica revelado. */
 
 type InstanciaVturb = { on: (evento: "timeupdate", fn: (tempo: number) => void) => void };
 type JanelaVturb = Window & { smartplayer?: { instances?: InstanciaVturb[] } };
@@ -14,10 +14,11 @@ const RevelacaoContext = createContext(false);
 
 export function VslRevelacao({ children }: { children: ReactNode }) {
   const playerId: string = OFERTA.vslVturb.playerId;
-  const [revelado, setRevelado] = useState(playerId === "");
+  const comDelay: boolean = OFERTA.vslComDelay;
+  const [revelado, setRevelado] = useState(!comDelay || playerId === "");
 
   useEffect(() => {
-    if (playerId === "") return;
+    if (!comDelay || playerId === "") return;
     let inscrito = false;
     const timer = window.setInterval(() => {
       const instancias = (window as JanelaVturb).smartplayer?.instances;
@@ -29,7 +30,7 @@ export function VslRevelacao({ children }: { children: ReactNode }) {
       });
     }, 500);
     return () => window.clearInterval(timer);
-  }, [playerId]);
+  }, [comDelay, playerId]);
 
   return <RevelacaoContext.Provider value={revelado}>{children}</RevelacaoContext.Provider>;
 }
