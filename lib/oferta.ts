@@ -29,10 +29,11 @@ export const OFERTA = {
   },
   vslEmbedUrl: process.env.NEXT_PUBLIC_VSL_EMBED_URL ?? "",
   // Segundo do vídeo em que a página revela a tarja vermelha e tudo abaixo da VSL:
-  // 26:50 = 1º CTA do roteiro (1610 s). Confirmar com a gravação publicada.
-  vslRevelarEm: 1610,
+  // 35:05 = "é só clicar no botão aqui abaixo" na gravação publicada (VSL de 40:52,
+  // medido no áudio; o preço é dito em 34:48 = 2088 s). O roteiro estimava 26:50.
+  vslRevelarEm: 2105,
   // false = sem delay: a página inteira aparece desde o começo. true = espera vslRevelarEm.
-  vslComDelay: false,
+  vslComDelay: true,
   vslDuracaoMin: 31,
 
   // PREÇO. A página dá ênfase ao 12x; o à vista aparece como alternativa.
