@@ -22,7 +22,7 @@ export const OFERTA = {
 
   // VSL hospedada na VTurb (smartplayer, formato vertical 3:4). É um teste A/B de 3 hooks
   // (C-001, B-003, E-004): o script sorteia a variante e troca o id do elemento para
-  // "vid-<variante>". As três têm o pitch em 2105 s, igual a vslRevelarEm. Se playerId estiver
+  // "vid-<variante>"; o delay de cada uma está em vslRevelarEmPorVariante. Se playerId estiver
   // vazio, cai no iframe de vslEmbedUrl e a página aparece sem esperar.
   vslVturb: {
     playerId: "ab-6af5a5b98e9bfd5d7fbb2a39",
@@ -31,9 +31,18 @@ export const OFERTA = {
   },
   vslEmbedUrl: process.env.NEXT_PUBLIC_VSL_EMBED_URL ?? "",
   // Segundo do vídeo em que a página revela a tarja vermelha e tudo abaixo da VSL:
-  // 35:05 = "é só clicar no botão aqui abaixo" na gravação publicada (VSL de 40:52,
-  // medido no áudio; o preço é dito em 34:48 = 2088 s). O roteiro estimava 26:50.
-  vslRevelarEm: 2105,
+  // a palavra "botão" em "é só clicar no botão aqui abaixo". Como cada variante do teste
+  // A/B tem um hook de duração diferente, o segundo muda. Medido no áudio de cada vídeo
+  // publicado na VTurb em 2026-11-14 (na VSL-4 original, sem hook novo, era 2105 = 35:05).
+  // A chave é o id do player da variante (o elemento vira "vid-<id>").
+  vslRevelarEmPorVariante: {
+    "6ae907a8a02a8f878e27309c": 2116, // VSL-HOOK-C-001, 35:16
+    "6aea2fd301a77afa8dd6c5b6": 2119, // VSL-HOOK-B-003, 35:19
+    "6aea4025aff21904df258ab2": 2154, // VSL-HOOK-E-004, 35:54
+  } as Record<string, number>,
+  // Usado quando a variante sorteada não está na lista acima (ex.: variante nova no
+  // teste). É o maior dos tempos, para nunca mostrar o botão antes da oferta.
+  vslRevelarEm: 2154,
   // false = sem delay: a página inteira aparece desde o começo. true = espera vslRevelarEm.
   vslComDelay: true,
   vslDuracaoMin: 31,

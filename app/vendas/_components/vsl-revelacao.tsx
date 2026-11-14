@@ -3,7 +3,8 @@ import { createContext, useContext, useEffect, useState, type ReactNode } from "
 import { OFERTA } from "@/lib/oferta";
 
 /* Revela a tarja vermelha e tudo que está abaixo da VSL quando o vídeo chega
-   ao segundo OFERTA.vslRevelarEm. Usa a API do smartplayer da VTurb
+   ao segundo da variante sorteada no teste A/B (OFERTA.vslRevelarEmPorVariante;
+   sem variante conhecida, OFERTA.vslRevelarEm). Usa a API do smartplayer da VTurb
    (window.smartplayer.instances, evento "timeupdate" com o tempo em segundos).
    Sem player VTurb configurado ou com OFERTA.vslComDelay = false, revela na hora. Depois de revelado, fica revelado. */
 
@@ -25,8 +26,11 @@ export function VslRevelacao({ children }: { children: ReactNode }) {
       if (inscrito || !instancias || instancias.length === 0) return;
       inscrito = true;
       window.clearInterval(timer);
+      // O script do teste A/B troca o id do elemento para "vid-<id da variante>".
+      const variante = document.querySelector("vturb-smartplayer")?.id.replace(/^vid-/, "") ?? "";
+      const revelarEm = OFERTA.vslRevelarEmPorVariante[variante] ?? OFERTA.vslRevelarEm;
       instancias[0].on("timeupdate", (tempo) => {
-        if (tempo >= OFERTA.vslRevelarEm) setRevelado(true);
+        if (tempo >= revelarEm) setRevelado(true);
       });
     }, 500);
     return () => window.clearInterval(timer);
