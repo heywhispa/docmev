@@ -20,12 +20,14 @@ export const OFERTA = {
   checkoutUrlCondicaoEspecial:
     process.env.NEXT_PUBLIC_CHECKOUT_URL_CUPOM ?? "https://pay.hotmart.com/Y108012325N?off=3ret8gsy",
 
-  // VSL hospedada na VTurb (smartplayer, formato vertical 3:4). Se playerId estiver
+  // VSL hospedada na VTurb (smartplayer, formato vertical 3:4). É um teste A/B de 3 hooks
+  // (C-001, B-003, E-004): o script sorteia a variante e troca o id do elemento para
+  // "vid-<variante>". As três têm o pitch em 2105 s, igual a vslRevelarEm. Se playerId estiver
   // vazio, cai no iframe de vslEmbedUrl e a página aparece sem esperar.
   vslVturb: {
-    playerId: "vid-6adbe298d8ab5ce9041d5e53",
+    playerId: "ab-6af5a5b98e9bfd5d7fbb2a39",
     scriptUrl:
-      "https://scripts.converteai.net/86c1ada0-8f16-48cd-ab77-c21c6c2292bc/players/6adbe298d8ab5ce9041d5e53/v4/player.js",
+      "https://scripts.converteai.net/86c1ada0-8f16-48cd-ab77-c21c6c2292bc/ab-test/6af5a5b98e9bfd5d7fbb2a39/player.js",
   },
   vslEmbedUrl: process.env.NEXT_PUBLIC_VSL_EMBED_URL ?? "",
   // Segundo do vídeo em que a página revela a tarja vermelha e tudo abaixo da VSL:
